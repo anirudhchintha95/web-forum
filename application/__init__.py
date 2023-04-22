@@ -38,4 +38,9 @@ def create_app():
         """
         return make_response(jsonify({"error": e.description}), 400)
 
+    from application.routes import posts_bp, users_bp
+
+    app.register_blueprint(posts_bp)
+    app.register_blueprint(users_bp)
+
     return app
