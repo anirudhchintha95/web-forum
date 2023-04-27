@@ -35,6 +35,9 @@ class ResponseMixin:
         if isinstance(self[key], ObjectId):
             return str(self[key])
         
+        if key == "user" and self[key] is not None:
+            return self[key].to_response()
+    
         return self[key]
 
     def to_response(self):
