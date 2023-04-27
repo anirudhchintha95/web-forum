@@ -23,8 +23,8 @@ def register():
     else:
         abort(404, "Method not allowed")
 
-@bp.route("/<user_counter_id>/posts/create", methods=["POST"])
-def create_post_user_route(user_counter_id):
+@bp.route("/<user_key>/posts/create", methods=["POST"])
+def create_post_user_route(user_key):
     """
     Creating a post for the user
     """
@@ -33,7 +33,7 @@ def create_post_user_route(user_counter_id):
             if not request.json.get("msg"):
                 raise Exception("msg is required")
 
-            user = users_controller.get_user_by_key(user_counter_id)
+            user = users_controller.get_user_by_key(user_key)
             post = users_controller.create_post(user, request.json["msg"])
             print("post", post)
             return post.to_response()
@@ -49,7 +49,7 @@ def get_posts_user_route(user_counter_id):
     """
     if request.method == "GET":
         try:
-            user = users_controller.get_user_by_key(user_counter_id)
+            user = users_controller.get_user_by_counterId(user_counter_id)
             posts = users_controller.get_posts(user)
             return posts
         except Exception as e:
@@ -64,7 +64,7 @@ def delete_post_user_route(user_counter_id, post_counter_id, post_key):
     """
     if request.method == "DELETE":
         try:
-            user = users_controller.get_user_by_key(user_counter_id)
+            user = users_controller.get_user_by_counterId(user_counter_id)
             post = users_controller.delete_post(user, post_counter_id, post_key)
             return post.to_response()
         except Exception as e:
@@ -79,8 +79,8 @@ def get_other_user_posts(user_counter_id, other_user_counter_id):
     """
     if request.method == "GET":
         try:
-            user = users_controller.get_user_by_key(user_counter_id)
-            otheruser= users_controller.get_user_by_key(other_user_counter_id)
+            user = users_controller.get_user_by_counterId(user_counter_id)
+            otheruser= users_controller.get_user_by_counterId(other_user_counter_id)
             posts = users_controller.get_posts(otheruser)
             return posts
         except Exception as e:
