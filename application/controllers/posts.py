@@ -5,8 +5,6 @@ def create_post(user, msg):
     """
     Create a new post
     """
-    if user:
-        user = user.to_response()
 
     post = Post(msg=msg, user=user)
     post.save()

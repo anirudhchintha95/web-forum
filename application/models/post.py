@@ -1,10 +1,9 @@
 from application.models.base import Base
 from application.models.user import User
-from mongoengine import StringField, ReferenceField
+from mongoengine import StringField, ReferenceField, DateTimeField, SequenceField, Document
+from datetime import datetime
 
-
-
-class Post(Base):
+class Post(Document, Base):
     """
     Post Model
     {
@@ -21,6 +20,8 @@ class Post(Base):
 
     msg = StringField(required=True)
     user = ReferenceField(User)
+    counter_id = SequenceField()
+    timestamp = DateTimeField(default=datetime.now)
 
     def response_mapper(self):
         """

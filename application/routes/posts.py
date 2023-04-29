@@ -1,4 +1,4 @@
-from flask import Blueprint, request, abort
+from flask import Blueprint, request, abort, g
 from application.controllers.posts import (
     create_post,
     get_post_by_counter_id,
@@ -19,7 +19,7 @@ def create_post_route():
             if not request.json.get("msg"):
                 raise Exception("msg is required")
 
-            post = create_post(None, request.json["msg"])
+            post = create_post(g.get("current_user"), request.json["msg"])
             post = post.to_response()
             return post
         except Exception as e:
@@ -37,8 +37,8 @@ def get_post_route(post_counter_id):
     """
     if request.method == "GET":
         try:
-            post = get_post_by_counter_id(None, post_counter_id)
-            return post.to_response()
+            post = get_post_by_counter_id(g.get("current_user"), post_counter_id)
+            return post.to_response(True)
         except Exception as e:
             abort(400, str(e))
     else:
@@ -52,7 +52,7 @@ def delete_post_route(post_counter_id, id):
     """
     if request.method == "DELETE":
         try:
-            post = delete_post(None, post_counter_id, id)
+            post = delete_post(g.get("current_user"), post_counter_id, id)
             return post.to_response()
         except Exception as e:
             abort(400, str(e))

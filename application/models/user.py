@@ -1,9 +1,9 @@
 from application.models.base import Base
-from mongoengine import StringField
 from werkzeug.security import generate_password_hash, check_password_hash
+from mongoengine import StringField, DateTimeField, SequenceField, Document
+from datetime import datetime
 
-
-class User(Base):
+class User(Document, Base):
     """
     User Model
     {
@@ -16,6 +16,8 @@ class User(Base):
 
     username = StringField(required=True)
     password = StringField(required=True, min_length=8)
+    counter_id = SequenceField()
+    timestamp = DateTimeField(default=datetime.now)
 
     @classmethod
     def init_for_create(cls, username, password):

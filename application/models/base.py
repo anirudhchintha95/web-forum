@@ -28,7 +28,7 @@ class ResponseMixin:
         """
         raise NotImplementedError("response_mapper not implemented")
 
-    def get_value(self, key):
+    def get_value(self, key, remove_unique_key):
         """
         Returns the value of the key
         """
@@ -36,24 +36,22 @@ class ResponseMixin:
             return str(self[key])
         
         if key == "user" and self[key] is not None:
-            return self[key].to_response()
+            return self[key].to_response(remove_unique_key)
     
         return self[key]
 
-    def to_response(self):
+    def to_response(self, remove_unique_key=None):
         """
         Returns a dictionary of key: value
         """
         data = {
-            key: self.get_value(definedKey)
+            key: self.get_value(definedKey, remove_unique_key)
             for key, definedKey in self.response_mapper().items()
+            if key != "key" or not remove_unique_key
         }
 
         return json.loads(json_util.dumps(data))
 
 
-class Base(Document, ResponseMixin, CounterIdMixin):
-    timestamp = DateTimeField(default=datetime.now)
-    counter_id = SequenceField()
-
-    meta = {"allow_inheritance": True}
+class Base(ResponseMixin, CounterIdMixin):
+    pass
