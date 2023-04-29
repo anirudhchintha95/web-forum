@@ -35,6 +35,8 @@ class ResponseMixin:
         if isinstance(self[key], ObjectId):
             return str(self[key])
         
+        if key == 'timestamp':
+            return self[key].isoformat()
         if key == "user" and self[key] is not None:
             return self[key].to_response(remove_unique_key)
     

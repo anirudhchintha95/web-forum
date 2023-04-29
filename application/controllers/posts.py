@@ -18,12 +18,14 @@ def get_post_by_counter_id(user, counter_id):
 
     post = Post.objects(counter_id=int(counter_id)).first()
 
-    if user:
-        if post.user and str(post.user.id) != str(user.id):
-            raise Exception("Post not found")
-
-    if not post:
+    if post is None:
         raise Exception("Post not found")
+
+    if not user and post.user:
+        raise Exception("Delete post authorization error")
+
+    if user and post.user and str(post.user.id) != str(user.id):
+            raise Exception("Post not found")
     
     return post
 
@@ -32,8 +34,6 @@ def delete_post(user, counter_id, id):
     """
     Delete a post
     """
-    if user:
-        user = user.to_response()
 
     post = get_post_by_counter_id(user, counter_id)
     if not post:

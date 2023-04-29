@@ -21,7 +21,7 @@ class Post(Document, Base):
     msg = StringField(required=True)
     user = ReferenceField(User)
     counter_id = SequenceField()
-    timestamp = DateTimeField(default=datetime.now)
+    timestamp = DateTimeField(default=datetime.utcnow)
 
     def response_mapper(self):
         """

@@ -49,15 +49,13 @@ def get_posts(user):
     posts = Post.objects(
         user=user
     )
-    post_list = [post.to_response() for post in posts]
+    post_list = [post.to_response(True) for post in posts]
     return post_list
 
 def delete_post(user, counter_id, id):
     """
     Delete a post
     """
-    if user:
-        user = user.to_response()
 
     post = Post.objects(counter_id=int(counter_id)).first()
     if not post:

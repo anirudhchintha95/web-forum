@@ -17,7 +17,7 @@ class User(Document, Base):
     username = StringField(required=True)
     password = StringField(required=True, min_length=8)
     counter_id = SequenceField()
-    timestamp = DateTimeField(default=datetime.now)
+    timestamp = DateTimeField(default=datetime.utcnow)
 
     @classmethod
     def init_for_create(cls, username, password):
