@@ -27,9 +27,9 @@ class Post(Base):
         Returns a dictionary of key: definedKey
         """
         return {
-            "user": "user",
             "id": "counter_id",
             "key": "id",
             "msg": "msg",
             "timestamp": "timestamp",
+            "user": "user"
         }
