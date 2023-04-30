@@ -23,6 +23,7 @@ def register():
     else:
         abort(404, "Method not allowed")
 
+
 @bp.route("/<user_counter_id>/posts", methods=["GET"])
 def get_posts_user_route(user_counter_id):
     """
@@ -37,6 +38,3 @@ def get_posts_user_route(user_counter_id):
             abort(400, str(e))
     else:
         abort(404, "Method not allowed")
-
-
-
