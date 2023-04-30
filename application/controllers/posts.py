@@ -25,8 +25,8 @@ def get_post_by_counter_id(user, counter_id):
         raise Exception("Delete post authorization error")
 
     if user and post.user and str(post.user.id) != str(user.id):
-            raise Exception("Post not found")
-    
+        raise Exception("Post not found")
+
     return post
 
 
@@ -45,9 +45,29 @@ def delete_post(user, counter_id, id):
     post.delete()
     return post
 
+
 def get_posts():
     """
     Get a post
     """
     posts = Post.objects()
     return list(map(lambda post: post.to_response(), posts))
+
+
+def get_posts_search(search):
+    """
+    Get a post
+    """
+    if not search:
+        raise Exception("Search is empty")
+
+    if not isinstance(search, str):
+        raise Exception("Search is not string")
+
+    search = search.strip()
+    if not search:
+        raise Exception("Search is empty")
+
+    posts = Post.objects(msg__icontains=search)
+    post_list = [post.to_response(True) for post in posts]
+    return post_list
