@@ -24,6 +24,31 @@ def get_user_by_key(user_key):
         raise Exception("User not found")
     return user
 
+def edit_user_by_key(user_key, username, password, firstname):
+    """
+    Edit a user by user_key
+    """
+    user = User.objects(key=user_key).first()
+    if not user:
+        raise Exception("User not found")
+
+    hasUpdates = False
+    if username and username.lower() != user.username.lower():
+        hasUpdates = True
+        user.username = username
+    if password and not user.check_password(password):
+        hasUpdates = True
+        user.password = password
+    if firstname and firstname.lower() != user.firstname.lower():
+        hasUpdates = True
+        user.firstname = firstname
+
+    if not hasUpdates:
+        raise Exception("Please provide at least one update to change user details")
+
+    user.save()
+    return user
+
 def get_user_by_counterId(counter_id):
     """
     Get a user by counter_id

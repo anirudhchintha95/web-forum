@@ -11,13 +11,18 @@ def register():
     """
     if request.method == "POST":
         try:
-            validate_fields = ["username", "password", "firstname"]
-            for field in validate_fields:
-                if not request.json.get(field):
+            params = {
+                "username": "",
+                "password": "",
+                "firstname": ""
+            }
+            for field in params:
+                params[field] = request.json.get(field).strip()
+                if not params[field]:
                     raise Exception(f"{field} is required")
 
             user = users_controller.create_user(
-                request.json["username"], request.json["password"], request.json["firstname"]
+                params["username"], params["password"], params["firstname"]
             )
             return user.to_response()
         except Exception as e:
@@ -39,6 +44,27 @@ def get_user_route(user_key):
             abort(400, str(e))
     else:
         abort(404, "User not found")
+
+# Edit a user by user key
+@bp.route("/<user_key>/edit", methods=["PUT"])
+def edit_user_route(user_key):
+    """
+    Edit a user by counterId
+    """
+    if request.method == "PUT":
+        username = request.json.get("username") or ""
+        password = request.json.get("password") or ""
+        firstname = request.json.get("firstname") or ""
+        try:
+            user = users_controller.edit_user_by_key(
+                user_key, username.strip(), password.strip(), firstname.strip()
+            )
+            return user.to_response()
+        except Exception as e:
+            abort(400, str(e))
+    else:
+        abort(404, "User not found")
+
 
 @bp.route("/<user_counter_id>/posts", methods=["GET"])
 def get_posts_user_route(user_counter_id):

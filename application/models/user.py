@@ -55,4 +55,4 @@ class User(Document, Base):
         """
         Checks if the password passed is user's password
         """
-        return check_password_hash(raw_password, self.password)
+        return check_password_hash(self.password, raw_password)
