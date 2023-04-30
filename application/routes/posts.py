@@ -22,7 +22,6 @@ def create_post_route():
         try:
             if not msg:
                 raise Exception("msg is required")
-
             post = create_post(g.get("current_user"), msg)
             post = post.to_response()
             return post
