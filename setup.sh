@@ -18,7 +18,7 @@ if [ ! -f /usr/bin/mongod ]
 
     sudo apt-get update
     sudo apt-get install -y mongodb-org
-    sudo systemctl start mongodb
+    sudo service mongod start
 else
   echo "mongo db already installed.  Skipping..."
 fi
