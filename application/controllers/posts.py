@@ -51,3 +51,13 @@ def get_posts():
     """
     posts = Post.objects()
     return list(map(lambda post: post.to_response(), posts))
+
+def get_posts_search(search):
+    """
+    Get a post
+    """
+    search=search.strip()
+    # posts = Post.objects(msg__exact=search)
+    posts= Post.objects(msg__icontains=search)
+    post_list = [post.to_response(True) for post in posts]
+    return post_list

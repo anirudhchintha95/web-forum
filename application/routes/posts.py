@@ -3,7 +3,8 @@ from application.controllers.posts import (
     create_post,
     get_post_by_counter_id,
     delete_post,
-    get_posts
+    get_posts,
+    get_posts_search
 )
 
 bp = Blueprint("post", __name__, url_prefix="/post")
@@ -58,3 +59,19 @@ def delete_post_route(post_counter_id, id):
             abort(400, str(e))
     else:
         abort(404, "Method not allowed")
+
+@bp.route("/query/search", methods=["GET"])
+def search_post_route():
+    """
+    Search a post
+    """
+    search = request.args.get('search')
+    if request.method == "GET":
+        try:
+            posts = get_posts_search(search)
+            return posts
+        except Exception as e:
+            abort(400, str(e))
+    else:
+        abort(404, "Method not allowed")
+
