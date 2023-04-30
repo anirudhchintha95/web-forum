@@ -1,0 +1,567 @@
+{
+	"info": {
+		"_postman_id": "e8790612-fa58-4467-87ab-9531a5868d33",
+		"name": "web-forum: API tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Create User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"parsed_response = pm.response.json();",
+									"",
+									"pm.test(\"User is created\", () => {",
+									"  pm.expect(parsed_response.key).to.exist;",
+									"  pm.expect(parsed_response.id).to.exist;",
+									"});",
+									"",
+									"pm.collectionVariables.set(\"user1_key\", parsed_response.key);",
+									"pm.collectionVariables.set(\"user1_id\", parsed_response.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"AC\",\n    \"password\": \"12345678\"\n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/users/create",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"users",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a Duplicate User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"AC\",\n    \"password\": \"12345678\"\n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/users/create",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"users",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create user without username",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"parsed_response = pm.response.json();",
+									"",
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"    pm.expect(parsed_response.error).to.eql(\"Username and password are required\")",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"\",\n    \"password\": \"12345678\"\n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/users/create",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"users",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create user without password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"parsed_response = pm.response.json();",
+									"",
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"    pm.expect(parsed_response.error).to.eql(\"Username and password are required\")",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"AC\",\n    \"password\": \"\"\n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/users/create",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"users",
+								"create"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Post(Anonymous)",
+			"item": [
+				{
+					"name": "Create Anonymous Post",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"parsed_response = pm.response.json();",
+									"",
+									"pm.test(\"Post is created\", () => {",
+									"  pm.expect(parsed_response.key).to.exist;",
+									"  pm.expect(parsed_response.id).to.exist;",
+									"  pm.expect(parsed_response.msg).to.exist;",
+									"  pm.expect(parsed_response.user).to.to.be.null;",
+									"});",
+									"",
+									"pm.collectionVariables.set(\"an_post_1_id\", parsed_response.id);",
+									"pm.collectionVariables.set(\"an_post_1_key\", parsed_response.key);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"msg\": \"Hi! I am created by suspicious people! Bosh!\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/post",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"post"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create post with no message",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"parsed_response = pm.response.json();",
+									"",
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"    pm.expect(parsed_response.error).to.eql(\"msg is required\")",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"msg\": \"\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/post",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"post"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Post",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"parsed_response = pm.response.json();",
+									"",
+									"pm.test(\"Post is sent\", () => {",
+									"  pm.response.to.have.status(200);",
+									"  pm.expect(parsed_response.key).to.not.exist;",
+									"  pm.expect(parsed_response.id).to.exist;",
+									"  pm.expect(parsed_response.msg).to.exist;",
+									"  pm.expect(parsed_response.user).to.to.be.null;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/post/{{an_post_1_id}}",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"post",
+								"{{an_post_1_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get unavailable post",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"parsed_response = pm.response.json();",
+									"",
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"    pm.expect(parsed_response.error).to.eql(\"Post not found\")",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/post/0",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"post",
+								"0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete post with invalid key",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"parsed_response = pm.response.json();",
+									"",
+									"pm.test(\"Status code is 403\", function () {",
+									"    pm.response.to.have.status(403);",
+									"    pm.expect(parsed_response.error).to.eql(\"You are not authorised to delete this post.\")",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"msg\": \"Hi! I am created by suspicious people! Bosh!\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/post/{{an_post_1_id}}/delete/wrong_key_alert",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"post",
+								"{{an_post_1_id}}",
+								"delete",
+								"wrong_key_alert"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete post",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"parsed_response = pm.response.json();",
+									"",
+									"pm.test(\"Post is created\", () => {",
+									"  pm.expect(parsed_response.key).to.exist;",
+									"  pm.expect(parsed_response.id).to.exist;",
+									"  pm.expect(parsed_response.msg).to.exist;",
+									"  pm.expect(parsed_response.user).to.be.null;",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"msg\": \"Hi! I am created by suspicious people! Bosh!\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/post/{{an_post_1_id}}/delete/{{an_post_1_key}}",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"post",
+								"{{an_post_1_id}}",
+								"delete",
+								"{{an_post_1_key}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete unavailable post",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"parsed_response = pm.response.json();",
+									"",
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"    pm.expect(parsed_response.error).to.eql(\"Post not found\")",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"msg\": \"Hi! I am created by suspicious people! Bosh!\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/post/{{an_post_1_id}}/delete/{{an_post_1_key}}",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"post",
+								"{{an_post_1_id}}",
+								"delete",
+								"{{an_post_1_key}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "user1_key",
+			"value": ""
+		},
+		{
+			"key": "user1_id",
+			"value": ""
+		},
+		{
+			"key": "an_post_1_id",
+			"value": ""
+		},
+		{
+			"key": "an_post_1_key",
+			"value": ""
+		}
+	]
+}

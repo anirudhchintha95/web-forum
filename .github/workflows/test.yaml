@@ -27,3 +27,9 @@ jobs:
       - name: Run setup.sh
         run: ./setup.sh
         shell: bash
+      - name: Run run.sh
+        run: ./run.sh
+        shell: bash
+      - name: Run test.sh
+        run: ./test.sh
+        shell: bash
