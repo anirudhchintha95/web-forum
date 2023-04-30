@@ -9,4 +9,7 @@ python3 -m venv venv
 ./run.sh &
 PID=$! # record the PID
 
+newman run tests/default/forum_multiple_posts.postman_collection.json -e tests/default/env.json # use the env file
+newman run tests/default/forum_post_read_delete.postman_collection.json -n 50 # 50 iterations
+
 newman run tests/web-forum-API-tests.postman_collection.json
