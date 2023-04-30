@@ -20,7 +20,7 @@ def get_user_by_key(user_key):
     """
     Get a user by user_key
     """
-    user = User.objects(id=user_key).first()
+    user = User.objects(key=user_key).first()
     if not user:
         raise Exception("User not found")
     return user

@@ -23,6 +23,20 @@ def register():
     else:
         abort(404, "Method not allowed")
 
+# Get a user by user key
+@bp.route("/<user_key>", methods=["GET"])
+def get_user_route(user_key):
+    """
+    Get a user by counterId
+    """
+    if request.method == "GET":
+        try:
+            user = users_controller.get_user_by_key(user_key)
+            return user.to_response()
+        except Exception as e:
+            abort(400, str(e))
+    else:
+        abort(404, "User not found")
 
 @bp.route("/<user_counter_id>/posts", methods=["GET"])
 def get_posts_user_route(user_counter_id):
