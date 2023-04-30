@@ -18,12 +18,16 @@ def create_post_route():
     """
     if request.method == "POST":
         msg = request.json.get("msg")
+        if not msg:
+            abort(400, "msg is required")
+        if not isinstance(msg, str):
+            abort(400, "msg must be a string")
         msg = msg.strip()
         try:
             if not msg:
                 raise Exception("msg is required")
             post = create_post(g.get("current_user"), msg)
-            post = post.to_response()
+            post = post.to_response() 
             return post
         except Exception as e:
             abort(400, str(e))
