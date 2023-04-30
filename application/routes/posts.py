@@ -17,11 +17,13 @@ def create_post_route():
     Create a post which is not associated with any user
     """
     if request.method == "POST":
+        msg = request.json.get("msg")
+        msg = msg.strip()
         try:
-            if not request.json.get("msg"):
+            if not msg:
                 raise Exception("msg is required")
 
-            post = create_post(g.get("current_user"), request.json["msg"])
+            post = create_post(g.get("current_user"), msg)
             post = post.to_response()
             return post
         except Exception as e:
