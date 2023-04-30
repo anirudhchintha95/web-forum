@@ -1,7 +1,8 @@
-from flask import Flask, g, make_response, jsonify, request
+from flask import Flask, g, jsonify, request
 from application.config import Config
 from application.db import DB
 from application.controllers.users import get_user_by_key
+from werkzeug.exceptions import HTTPException
 
 
 def create_app():
@@ -22,26 +23,26 @@ def create_app():
             g.current_user = get_user_by_key(user_key)
 
 
-    @app.errorhandler(404)
+    @app.errorhandler(HTTPException)
     def page_not_found(e):
         """
         Handle 404 errors
         """
-        return make_response(jsonify({"err": "Page not found"}), 404)
+        return jsonify(error=e.description), e.code
 
-    @app.errorhandler(405)
-    def method_not_defined(e):
-        """
-        Handle 405 errors
-        """
-        return make_response(jsonify({"err": "Method not defined"}), 405)
+    # @app.errorhandler(405)
+    # def method_not_defined(e):
+    #     """
+    #     Handle 405 errors
+    #     """
+    #     return jsonify(error="Method not defined"), 405
 
-    @app.errorhandler(400)
-    def handle_400(e):
-        """
-        Handle 400 errors
-        """
-        return make_response(jsonify({"error": e.description}), 400)
+    # @app.errorhandler(400)
+    # def handle_400(e):
+    #     """
+    #     Handle 400 errors
+    #     """
+    #     return jsonify(error=e.description), 400
 
     from application.routes import posts_bp, users_bp
 

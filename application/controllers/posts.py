@@ -1,4 +1,5 @@
 from application.models.post import Post
+from application.models.errors import NotFoundError, UnauthorizedError
 
 
 def create_post(user, msg):
@@ -19,13 +20,7 @@ def get_post_by_counter_id(user, counter_id):
     post = Post.objects(counter_id=int(counter_id)).first()
 
     if post is None:
-        raise Exception("Post not found")
-
-    if not user and post.user:
-        raise Exception("Delete post authorization error")
-
-    if user and post.user and str(post.user.id) != str(user.id):
-        raise Exception("Post not found")
+        raise NotFoundError("Post not found")
 
     return post
 
@@ -36,11 +31,18 @@ def delete_post(user, counter_id, id):
     """
 
     post = get_post_by_counter_id(user, counter_id)
-    if not post:
-        raise Exception("Post not found")
 
+    if not post:
+        raise NotFoundError("Post not found")
+    
     if str(post.id) != id:
-        raise Exception("Post not found")
+        raise UnauthorizedError("You are not authorised to delete this post.")
+    
+    if not user and post.user:
+        raise UnauthorizedError("You cant delete this post.")
+
+    if user and post.user and str(post.user.id) != str(user.id):
+        raise UnauthorizedError("You cant delete this post.")
 
     post.delete()
     return post

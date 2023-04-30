@@ -1,6 +1,7 @@
 from application.models.base import Base
 from application.models.user import User
-from mongoengine import StringField, ReferenceField, DateTimeField, SequenceField, Document
+from mongoengine import StringField, ReferenceField, DateTimeField, SequenceField, ObjectIdField, Document
+from bson.objectid import ObjectId
 from datetime import datetime
 
 class Post(Document, Base):
@@ -21,6 +22,7 @@ class Post(Document, Base):
     msg = StringField(required=True)
     user = ReferenceField(User)
     counter_id = SequenceField()
+    key=ObjectIdField(primary_key=True, default=ObjectId())
     timestamp = DateTimeField(default=datetime.utcnow)
 
     def response_mapper(self):
@@ -29,7 +31,7 @@ class Post(Document, Base):
         """
         return {
             "id": "counter_id",
-            "key": "id",
+            "key": "key",
             "msg": "msg",
             "timestamp": "timestamp",
             "user": "user"

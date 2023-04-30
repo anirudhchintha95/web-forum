@@ -6,6 +6,7 @@ from application.controllers.posts import (
     get_posts,
     get_posts_search,
 )
+from application.models.errors import NotFoundError, UnauthorizedError
 
 bp = Blueprint("post", __name__, url_prefix="/post")
 
@@ -28,10 +29,10 @@ def create_post_route():
     elif request.method == "GET":
         return get_posts()
     else:
-        abort(404, "Method not allowed")
+        abort(405, "Method not allowed")
 
 
-@bp.route("/<post_counter_id>", methods=["GET"])
+@bp.route("/<int:post_counter_id>", methods=["GET"])
 def get_post_route(post_counter_id):
     """
     Get a post by id
@@ -40,10 +41,12 @@ def get_post_route(post_counter_id):
         try:
             post = get_post_by_counter_id(g.get("current_user"), post_counter_id)
             return post.to_response(True)
+        except NotFoundError as e:
+            abort(404, str(e))
         except Exception as e:
             abort(400, str(e))
     else:
-        abort(404, "Method not allowed")
+        abort(405, "Method not allowed")
 
 
 @bp.route("/<post_counter_id>/delete/<id>", methods=["DELETE"])
@@ -55,10 +58,14 @@ def delete_post_route(post_counter_id, id):
         try:
             post = delete_post(g.get("current_user"), post_counter_id, id)
             return post.to_response()
+        except NotFoundError as e:
+            abort(404, str(e))
+        except UnauthorizedError as e:
+            abort(403, str(e))
         except Exception as e:
             abort(400, str(e))
     else:
-        abort(404, "Method not allowed")
+        abort(405, "Method not allowed")
 
 
 @bp.route("/query/search", methods=["GET"])

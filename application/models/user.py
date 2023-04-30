@@ -1,6 +1,7 @@
 from application.models.base import Base
 from werkzeug.security import generate_password_hash, check_password_hash
-from mongoengine import StringField, DateTimeField, SequenceField, Document
+from mongoengine import StringField, DateTimeField, SequenceField, ObjectIdField, Document
+from bson.objectid import ObjectId
 from datetime import datetime
 
 class User(Document, Base):
@@ -17,6 +18,7 @@ class User(Document, Base):
     username = StringField(required=True)
     password = StringField(required=True, min_length=8)
     counter_id = SequenceField()
+    key=ObjectIdField(primary_key=True, default=ObjectId())
     timestamp = DateTimeField(default=datetime.utcnow)
 
     @classmethod
@@ -35,7 +37,7 @@ class User(Document, Base):
         return {
             "username": "username",
             "id": "counter_id",
-            "key": "id",
+            "key": "key",
             "timestamp": "timestamp",
         }
 
