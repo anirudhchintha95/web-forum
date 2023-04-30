@@ -9,7 +9,7 @@ def create_post(user, msg):
 
     post = Post(msg=msg, user=user)
     post.save()
-    return post
+    return get_post_by_counter_id(user, post.counter_id)
 
 
 def get_post_by_counter_id(user, counter_id):

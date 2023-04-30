@@ -13,7 +13,7 @@ def create_user(username, password, firstname):
 
     user = User.init_for_create(username, password, firstname)
     user.save()
-    return user
+    return get_user_by_counterId(user.counter_id)
 
 def get_user_by_key(user_key):
     """
