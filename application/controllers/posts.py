@@ -56,8 +56,16 @@ def get_posts_search(search):
     """
     Get a post
     """
+    if not search:
+        raise Exception("Search is empty")
+    
+    if not isinstance(search, str):
+        raise Exception("Search is not string")
+    
     search=search.strip()
-    # posts = Post.objects(msg__exact=search)
+    if not search:
+        raise Exception("Search is empty")
+    
     posts= Post.objects(msg__icontains=search)
     post_list = [post.to_response(True) for post in posts]
     return post_list
