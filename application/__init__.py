@@ -20,13 +20,15 @@ def create_app():
             g.db = db_instance
         user_key = request.headers.get("user_key")
         if user_key:
-            g.current_user = get_user_by_key(user_key)
-
+            try:
+                g.current_user = get_user_by_key(user_key)
+            except Exception as e:
+                g.current_user = None
 
     @app.errorhandler(HTTPException)
     def page_not_found(e):
         """
-        Handle 404 errors
+        Handle errors
         """
         return jsonify(error=e.description), e.code
 

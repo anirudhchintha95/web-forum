@@ -18,7 +18,6 @@ class User(Document, Base):
     username = StringField(required=True)
     password = StringField(required=True, min_length=8)
     counter_id = SequenceField()
-    key=ObjectIdField(primary_key=True, default=ObjectId())
     timestamp = DateTimeField(default=datetime.utcnow)
 
     @classmethod
@@ -37,7 +36,7 @@ class User(Document, Base):
         return {
             "username": "username",
             "id": "counter_id",
-            "key": "key",
+            "key": "id",
             "timestamp": "timestamp",
         }
 
