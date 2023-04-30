@@ -2,7 +2,7 @@ from application.models.user import User
 from application.models.post import Post
 
 
-def create_user(username, password):
+def create_user(username, password, firstname):
     """
     Create a new user
     """
@@ -11,8 +11,7 @@ def create_user(username, password):
     if already_exists:
         raise Exception("User already exists")
 
-    
-    user = User.init_for_create(username, password)
+    user = User.init_for_create(username, password, firstname)
     user.save()
     return user
 

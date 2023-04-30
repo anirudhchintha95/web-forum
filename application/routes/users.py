@@ -11,11 +11,13 @@ def register():
     """
     if request.method == "POST":
         try:
-            if not request.json.get("username") or not request.json.get("password"):
-                raise Exception("Username and password are required")
+            validate_fields = ["username", "password", "firstname"]
+            for field in validate_fields:
+                if not request.json.get(field):
+                    raise Exception(f"{field} is required")
 
             user = users_controller.create_user(
-                request.json["username"], request.json["password"]
+                request.json["username"], request.json["password"], request.json["firstname"]
             )
             return user.to_response()
         except Exception as e:

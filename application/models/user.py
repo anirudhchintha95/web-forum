@@ -10,6 +10,7 @@ class User(Document, Base):
     {
         "username": "test",
         "password": "test",
+        "firstname": "test",
         "counter": 1,
         "timestamp": "2020-10-31 12:00:00"
     }
@@ -17,16 +18,17 @@ class User(Document, Base):
 
     username = StringField(required=True)
     password = StringField(required=True, min_length=8)
+    firstname = StringField(required=True)
     counter_id = SequenceField()
     key=ObjectIdField(primary_key=True, default=ObjectId())
     timestamp = DateTimeField(default=datetime.utcnow)
 
     @classmethod
-    def init_for_create(cls, username, password):
+    def init_for_create(cls, username, password, firstname):
         """
         Initializes a user and hashes the password
         """
-        user = cls(username=username)
+        user = cls(username=username, firstname=firstname)
         user.hash_password(password)
         return user
 
@@ -39,6 +41,7 @@ class User(Document, Base):
             "id": "counter_id",
             "key": "key",
             "timestamp": "timestamp",
+            "firstname": "firstname"
         }
 
     def hash_password(self, raw_password):
