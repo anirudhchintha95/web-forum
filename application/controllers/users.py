@@ -19,7 +19,7 @@ def get_user_by_key(user_key):
     """
     Get a user by user_key
     """
-    user = User.objects(key=user_key).first()
+    user = User.objects(id=user_key).first()
     if not user:
         raise Exception("User not found")
     return user
@@ -28,7 +28,7 @@ def edit_user_by_key(user_key, username, password, firstname):
     """
     Edit a user by user_key
     """
-    user = User.objects(key=user_key).first()
+    user = User.objects(id=user_key).first()
     if not user:
         raise Exception("User not found")
 
@@ -36,7 +36,7 @@ def edit_user_by_key(user_key, username, password, firstname):
     if username and username.lower() != user.username.lower():
         hasUpdates = True
         user.username = username
-    if password and not user.check_password(password):
+    if password and password != user.password:
         hasUpdates = True
         user.password = password
     if firstname and firstname.lower() != user.firstname.lower():
