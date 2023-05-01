@@ -40,15 +40,15 @@ def get_user_route(user_counter_id):
         try:
             user_key = request.headers.get("user_key")
             user = users_controller.get_user_by_key(user_key)
-            return user.to_response()
+            return user.to_response(True)
         except Exception as e:
             abort(400, str(e))
     else:
         abort(404, "User not found")
 
 # Edit a user by user counter id
-@bp.route("/<int:user_counter_id>/edit", methods=["PUT"])
-def edit_user_route(user_counter_id):
+@bp.route("/edit", methods=["PUT"])
+def edit_user_route():
     """
     Edit a user by counterId
     """
