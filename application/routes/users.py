@@ -40,7 +40,7 @@ def get_user_route(user_counter_id):
         try:
             current_user = g.get("current_user")
             if current_user is None:
-                abort(400, "Unauthorized")
+                abort(403, "Unauthorized")
             user = users_controller.get_user_by_counterId(user_counter_id)
             return user.to_response(True)
         except Exception as e:
