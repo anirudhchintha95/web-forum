@@ -31,13 +31,14 @@ def register():
         abort(404, "Method not allowed")
 
 # Get a user by user key
-@bp.route("/<user_key>", methods=["GET"])
-def get_user_route(user_key):
+@bp.route("/<int:user_counter_id>", methods=["GET"])
+def get_user_route(user_counter_id):
     """
     Get a user by counterId
     """
     if request.method == "GET":
         try:
+            user_key = request.headers.get("user_key")
             user = users_controller.get_user_by_key(user_key)
             return user.to_response()
         except Exception as e:
@@ -45,13 +46,14 @@ def get_user_route(user_key):
     else:
         abort(404, "User not found")
 
-# Edit a user by user key
-@bp.route("/<user_key>/edit", methods=["PUT"])
-def edit_user_route(user_key):
+# Edit a user by user counter id
+@bp.route("/<int:user_counter_id>/edit", methods=["PUT"])
+def edit_user_route(user_counter_id):
     """
     Edit a user by counterId
     """
     if request.method == "PUT":
+        user_key = request.headers.get("user_key")
         username = request.json.get("username") or ""
         password = request.json.get("password") or ""
         firstname = request.json.get("firstname") or ""
