@@ -2,7 +2,7 @@ from application.models.user import User
 from application.models.post import Post
 
 
-def create_user(username, password):
+def create_user(username, password, firstname):
     """
     Create a new user
     """
@@ -11,8 +11,7 @@ def create_user(username, password):
     if already_exists:
         raise Exception("User already exists")
 
-    
-    user = User.init_for_create(username, password)
+    user = User.init_for_create(username, password, firstname)
     user.save()
     return get_user_by_counterId(user.counter_id)
 
@@ -23,6 +22,31 @@ def get_user_by_key(user_key):
     user = User.objects(id=user_key).first()
     if not user:
         raise Exception("User not found")
+    return user
+
+def edit_user_by_key(user_key, username, password, firstname):
+    """
+    Edit a user by user_key
+    """
+    user = User.objects(id=user_key).first()
+    if not user:
+        raise Exception("User not found")
+
+    hasUpdates = False
+    if username and username.lower() != user.username.lower():
+        hasUpdates = True
+        user.username = username
+    if password and not user.check_password(password):
+        hasUpdates = True
+        user.hash_password(password)
+    if firstname and firstname.lower() != user.firstname.lower():
+        hasUpdates = True
+        user.firstname = firstname
+
+    if not hasUpdates:
+        raise Exception("Please provide at least one update to change user details")
+
+    user.save()
     return user
 
 def get_user_by_counterId(counter_id):
