@@ -36,9 +36,9 @@ def edit_user_by_key(user_key, username, password, firstname):
     if username and username.lower() != user.username.lower():
         hasUpdates = True
         user.username = username
-    if password and password != user.password:
+    if password and not user.check_password(password):
         hasUpdates = True
-        user.password = password
+        user.hash_password(password)
     if firstname and firstname.lower() != user.firstname.lower():
         hasUpdates = True
         user.firstname = firstname
