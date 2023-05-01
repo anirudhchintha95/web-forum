@@ -55,6 +55,9 @@ def edit_user_route():
     Edit a user by counterId
     """
     if request.method == "PUT":
+        current_user = g.get("current_user")
+        if current_user is None:
+            abort(403, "Unauthorized")
         user_key = request.headers.get("user_key")
         username = request.json.get("username") or ""
         password = request.json.get("password") or ""
