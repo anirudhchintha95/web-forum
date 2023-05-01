@@ -1,4 +1,4 @@
-from flask import Blueprint, request, abort
+from flask import Blueprint, request, abort, g
 import application.controllers.users as users_controller
 
 bp = Blueprint("users", __name__, url_prefix="/users")
@@ -38,8 +38,10 @@ def get_user_route(user_counter_id):
     """
     if request.method == "GET":
         try:
-            user_key = request.headers.get("user_key")
-            user = users_controller.get_user_by_key(user_key)
+            current_user = g.get("current_user")
+            if current_user is None:
+                abort(400, "Unauthorized")
+            user = users_controller.get_user_by_counterId(user_counter_id)
             return user.to_response(True)
         except Exception as e:
             abort(400, str(e))
