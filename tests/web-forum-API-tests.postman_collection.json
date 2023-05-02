@@ -1,8 +1,9 @@
 {
 	"info": {
-		"_postman_id": "e8790612-fa58-4467-87ab-9531a5868d33",
+		"_postman_id": "ba359c9f-2ec7-4c20-b951-69b340c3d54c",
 		"name": "web-forum: API tests",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3815727"
 	},
 	"item": [
 		{
@@ -10,199 +11,973 @@
 			"item": [
 				{
 					"name": "Create User",
-					"event": [
+					"item": [
 						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"parsed_response = pm.response.json();",
-									"",
-									"pm.test(\"User is created\", () => {",
-									"  pm.expect(parsed_response.key).to.exist;",
-									"  pm.expect(parsed_response.id).to.exist;",
-									"});",
-									"",
-									"pm.collectionVariables.set(\"user1_key\", parsed_response.key);",
-									"pm.collectionVariables.set(\"user1_id\", parsed_response.id);"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "default"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"username\": \"AC\",\n    \"password\": \"12345678\"\n}"
-						},
-						"url": {
-							"raw": "http://127.0.0.1:5000/users/create",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
+							"name": "Create User ACS",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"parsed_response = pm.response.json();",
+											"",
+											"pm.test(\"User is created\", () => {",
+											"  pm.expect(parsed_response.key).to.exist;",
+											"  pm.expect(parsed_response.id).to.exist;",
+											"  pm.expect(parsed_response.username).to.exist;",
+											"  pm.expect(parsed_response.timestamp).to.exist;",
+											"  pm.expect(parsed_response.firstname).to.exist;",
+											"});",
+											"",
+											"pm.collectionVariables.set(\"user_ac_key\", parsed_response.key);",
+											"pm.collectionVariables.set(\"user_ac_id\", parsed_response.id);"
+										],
+										"type": "text/javascript"
+									}
+								}
 							],
-							"port": "5000",
-							"path": [
-								"users",
-								"create"
-							]
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"ACS\",\n    \"password\": \"12345678\",\n    \"firstname\": \"Anirudh Chintha\"\n}"
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/users/create",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"users",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create User PM",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"parsed_response = pm.response.json();",
+											"",
+											"pm.test(\"User is created\", () => {",
+											"  pm.expect(parsed_response.key).to.exist;",
+											"  pm.expect(parsed_response.id).to.exist;",
+											"  pm.expect(parsed_response.username).to.exist;",
+											"  pm.expect(parsed_response.timestamp).to.exist;",
+											"  pm.expect(parsed_response.firstname).to.exist;",
+											"});",
+											"",
+											"pm.collectionVariables.set(\"user_pm_key\", parsed_response.key);",
+											"pm.collectionVariables.set(\"user_pm_id\", parsed_response.id);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"PM\",\n    \"password\": \"12345678\",\n    \"firstname\": \"Pooja Mule\"\n}"
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/users/create",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"users",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create User KT",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"parsed_response = pm.response.json();",
+											"",
+											"pm.test(\"User is created\", () => {",
+											"  pm.expect(parsed_response.key).to.exist;",
+											"  pm.expect(parsed_response.id).to.exist;",
+											"  pm.expect(parsed_response.username).to.exist;",
+											"  pm.expect(parsed_response.timestamp).to.exist;",
+											"  pm.expect(parsed_response.firstname).to.exist;",
+											"});",
+											"",
+											"pm.collectionVariables.set(\"user_kt_key\", parsed_response.key);",
+											"pm.collectionVariables.set(\"user_kt_id\", parsed_response.id);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"KT\",\n    \"password\": \"12345678\",\n    \"firstname\": \"Kavya Talluri\"\n}"
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/users/create",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"users",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Duplicate User",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"ACS\",\n    \"password\": \"12345678\",\n    \"firstname\": \"Anna\"\n}"
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/users/create",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"users",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Validation: No username",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"parsed_response = pm.response.json();",
+											"",
+											"pm.test(\"Status code is 400\", function () {",
+											"    pm.response.to.have.status(400);",
+											"    pm.expect(parsed_response.error).to.eql(\"username is required\")",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"\",\n    \"password\": \"12345678\",\n    \"firstname\": \"random\"\n}"
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/users/create",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"users",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Validation: No password",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"parsed_response = pm.response.json();",
+											"",
+											"pm.test(\"Status code is 400\", function () {",
+											"    pm.response.to.have.status(400);",
+											"    pm.expect(parsed_response.error).to.eql(\"password is required\")",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"AC\",\n    \"password\": \"\",\n    \"firstname\": \"Annirudh\"\n}"
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/users/create",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"users",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Validation: No firstname",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"parsed_response = pm.response.json();",
+											"",
+											"pm.test(\"Status code is 400\", function () {",
+											"    pm.response.to.have.status(400);",
+											"    pm.expect(parsed_response.error).to.eql(\"firstname is required\")",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"AC\",\n    \"password\": \"48754365674\"\n}"
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/users/create",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"users",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Validation: Incorrect username data type",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"parsed_response = pm.response.json();",
+											"",
+											"pm.test(\"Status code is 400\", function () {",
+											"    pm.response.to.have.status(400);",
+											"    pm.expect(parsed_response.error).to.eql(\"username value should be string\")",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": 123,\n    \"password\": \"48754365674\",\n    \"firstname\": \"Pooja\"\n}"
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/users/create",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"users",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Validation: Incorrect password data type",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"parsed_response = pm.response.json();",
+											"",
+											"pm.test(\"Status code is 400\", function () {",
+											"    pm.response.to.have.status(400);",
+											"    pm.expect(parsed_response.error).to.eql(\"password value should be string\")",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"AC\",\n    \"password\": {\"a\": \"b\"},\n    \"firstname\": \"Pooja\"\n}"
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/users/create",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"users",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Validation: Incorrect firstname data type",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"parsed_response = pm.response.json();",
+											"",
+											"pm.test(\"Status code is 400\", function () {",
+											"    pm.response.to.have.status(400);",
+											"    pm.expect(parsed_response.error).to.eql(\"firstname value should be string\")",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"BC\",\n    \"password\": \"48754365674\",\n    \"firstname\": []\n}"
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/users/create",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"users",
+										"create"
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
 				},
 				{
-					"name": "Create a Duplicate User",
-					"event": [
+					"name": "Get User (User Profiles Extension)",
+					"item": [
 						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 400\", function () {",
-									"    pm.response.to.have.status(400);",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "default"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"username\": \"AC\",\n    \"password\": \"12345678\"\n}"
-						},
-						"url": {
-							"raw": "http://127.0.0.1:5000/users/create",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
+							"name": "Get User",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"parsed_response = pm.response.json();",
+											"",
+											"pm.test(\"User details received\", () => {",
+											"  pm.expect(parsed_response.key).to.not.exist;",
+											"  pm.expect(parsed_response.id).to.exist;",
+											"  pm.expect(parsed_response.username).to.exist;",
+											"  pm.expect(parsed_response.timestamp).to.exist;",
+											"  pm.expect(parsed_response.firstname).to.exist;",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
 							],
-							"port": "5000",
-							"path": [
-								"users",
-								"create"
-							]
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									},
+									{
+										"key": "user_key",
+										"value": "{{user_ac_key}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/users/{{user_ac_id}}",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"users",
+										"{{user_ac_id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Validation: No user key",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"parsed_response = pm.response.json();",
+											"",
+											"pm.test(\"Status code is 403\", function () {",
+											"    pm.response.to.have.status(403);",
+											"    pm.expect(parsed_response.error).to.eql(\"Unauthorized\")",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									},
+									{
+										"key": "user_key",
+										"value": "{{user1_key}}",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/users/{{user_ac_id}}",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"users",
+										"{{user_ac_id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Validation: Incorrect user id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"parsed_response = pm.response.json();",
+											"",
+											"pm.test(\"Status code is 404\", function () {",
+											"    pm.response.to.have.status(404);",
+											"    pm.expect(parsed_response.error).to.eql(\"User not found\")",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									},
+									{
+										"key": "user_key",
+										"value": "{{user_ac_key}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/users/0",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"users",
+										"0"
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
 				},
 				{
-					"name": "Create user without username",
-					"event": [
+					"name": "Edit User (User Profiles Extension)",
+					"item": [
 						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"parsed_response = pm.response.json();",
-									"",
-									"pm.test(\"Status code is 400\", function () {",
-									"    pm.response.to.have.status(400);",
-									"    pm.expect(parsed_response.error).to.eql(\"Username and password are required\")",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "default"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"username\": \"\",\n    \"password\": \"12345678\"\n}"
-						},
-						"url": {
-							"raw": "http://127.0.0.1:5000/users/create",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
+							"name": "Edit User",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"parsed_response = pm.response.json();",
+											"",
+											"pm.test(\"User details received\", () => {",
+											"  pm.expect(parsed_response.key).to.exist;",
+											"  pm.expect(parsed_response.id).to.exist;",
+											"  pm.expect(parsed_response.username).to.exist;",
+											"  pm.expect(parsed_response.username).to.eql('AC');",
+											"  pm.expect(parsed_response.timestamp).to.exist;",
+											"  pm.expect(parsed_response.firstname).to.exist;",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
 							],
-							"port": "5000",
-							"path": [
-								"users",
-								"create"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Create user without password",
-					"event": [
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									},
+									{
+										"key": "user_key",
+										"value": "{{user_ac_key}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"  AC   \"\n}"
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/users/edit",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"users",
+										"edit"
+									]
+								}
+							},
+							"response": []
+						},
 						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"parsed_response = pm.response.json();",
-									"",
-									"pm.test(\"Status code is 400\", function () {",
-									"    pm.response.to.have.status(400);",
-									"    pm.expect(parsed_response.error).to.eql(\"Username and password are required\")",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "default"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"username\": \"AC\",\n    \"password\": \"\"\n}"
-						},
-						"url": {
-							"raw": "http://127.0.0.1:5000/users/create",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
+							"name": "Validation: Duplicate username",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"parsed_response = pm.response.json();",
+											"",
+											"pm.test(\"Status code is 400\", function () {",
+											"    pm.response.to.have.status(400);",
+											"    pm.expect(parsed_response.error).to.eql(\"User already exists\")",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
 							],
-							"port": "5000",
-							"path": [
-								"users",
-								"create"
-							]
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									},
+									{
+										"key": "user_key",
+										"value": "{{user_ac_key}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"PM\"\n}"
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/users/edit",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"users",
+										"edit"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Validation: Edit user with same firstname",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"parsed_response = pm.response.json();",
+											"",
+											"pm.test(\"Status code is 400\", function () {",
+											"    pm.response.to.have.status(400);",
+											"    pm.expect(parsed_response.error).to.eql(\"Please provide at least one update to change user details\")",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									},
+									{
+										"key": "user_key",
+										"value": "{{user_pm_key}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"firstname\": \"Pooja Mule\"\n}"
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/users/edit",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"users",
+										"edit"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Validation: Edit user with same password",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"parsed_response = pm.response.json();",
+											"",
+											"pm.test(\"Status code is 400\", function () {",
+											"    pm.response.to.have.status(400);",
+											"    pm.expect(parsed_response.error).to.eql(\"Please provide at least one update to change user details\")",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									},
+									{
+										"key": "user_key",
+										"value": "{{user_ac_key}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"password\": \"12345678\"\n}"
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/users/edit",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"users",
+										"edit"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Validation: Edit user without user key",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"parsed_response = pm.response.json();",
+											"",
+											"pm.test(\"Status code is 403\", function () {",
+											"    pm.response.to.have.status(403);",
+											"    pm.expect(parsed_response.error).to.eql(\"Unauthorized\")",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									},
+									{
+										"key": "user_key",
+										"value": "{{user_ac_key}}",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"password\": \"12345678\"\n}"
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/users/edit",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"users",
+										"edit"
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
 				}
 			]
 		},
@@ -210,7 +985,1392 @@
 			"name": "Post(Anonymous)",
 			"item": [
 				{
-					"name": "Create Anonymous Post",
+					"name": "Create Post",
+					"item": [
+						{
+							"name": "Create Post",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"parsed_response = pm.response.json();",
+											"",
+											"pm.test(\"Post is created\", () => {",
+											"  pm.expect(parsed_response.key).to.exist;",
+											"  pm.expect(parsed_response.id).to.exist;",
+											"  pm.expect(parsed_response.msg).to.exist;",
+											"  pm.expect(parsed_response.user).to.to.be.null;",
+											"});",
+											"",
+											"pm.collectionVariables.set(\"anonymous_post_id\", parsed_response.id);",
+											"pm.collectionVariables.set(\"anonymous_post_key\", parsed_response.key);",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"msg\": \"Hi! I am created HEellloo by suspicious people! Bosh!\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/post",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"post"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Validation: No message",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"parsed_response = pm.response.json();",
+											"",
+											"pm.test(\"Status code is 400\", function () {",
+											"    pm.response.to.have.status(400);",
+											"    pm.expect(parsed_response.error).to.eql(\"msg is required\")",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"msg\": \"\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/post",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"post"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Validation: Empty message",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"parsed_response = pm.response.json();",
+											"",
+											"pm.test(\"Status code is 400\", function () {",
+											"    pm.response.to.have.status(400);",
+											"    pm.expect(parsed_response.error).to.eql(\"msg is required\")",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"msg\": \"   \"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/post",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"post"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Validation: Incorrect msg data type",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"parsed_response = pm.response.json();",
+											"",
+											"pm.test(\"Status code is 400\", function () {",
+											"    pm.response.to.have.status(400);",
+											"    pm.expect(parsed_response.error).to.eql(\"msg must be a string\")",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"msg\": 123\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/post",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"post"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Get Post",
+					"item": [
+						{
+							"name": "Get Post",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"parsed_response = pm.response.json();",
+											"",
+											"pm.test(\"Post is sent\", () => {",
+											"  pm.response.to.have.status(200);",
+											"  pm.expect(parsed_response.key).to.not.exist;",
+											"  pm.expect(parsed_response.id).to.exist;",
+											"  pm.expect(parsed_response.msg).to.exist;",
+											"  pm.expect(parsed_response.user).to.to.be.null;",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/post/{{anonymous_post_id}}",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"post",
+										"{{anonymous_post_id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get unavailable post",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"parsed_response = pm.response.json();",
+											"",
+											"pm.test(\"Status code is 404\", function () {",
+											"    pm.response.to.have.status(404);",
+											"    pm.expect(parsed_response.error).to.eql(\"Post not found\")",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/post/0",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"post",
+										"0"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Delete Post",
+					"item": [
+						{
+							"name": "Delete post with invalid key",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"parsed_response = pm.response.json();",
+											"",
+											"pm.test(\"Status code is 403\", function () {",
+											"    pm.response.to.have.status(403);",
+											"    pm.expect(parsed_response.error).to.eql(\"You are not authorised to delete this post.\")",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"msg\": \"Hi! I am created by suspicious people! Bosh!\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/post/{{anonymous_post_id}}/delete/wrong_key_alert",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"post",
+										"{{anonymous_post_id}}",
+										"delete",
+										"wrong_key_alert"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete post",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"parsed_response = pm.response.json();",
+											"",
+											"pm.test(\"Post is created\", () => {",
+											"  pm.expect(parsed_response.key).to.exist;",
+											"  pm.expect(parsed_response.id).to.exist;",
+											"  pm.expect(parsed_response.msg).to.exist;",
+											"  pm.expect(parsed_response.user).to.be.null;",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"msg\": \"Hi! I am created by suspicious people! Bosh!\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/post/{{anonymous_post_id}}/delete/{{anonymous_post_key}}",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"post",
+										"{{anonymous_post_id}}",
+										"delete",
+										"{{anonymous_post_key}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete unavailable post",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"parsed_response = pm.response.json();",
+											"",
+											"pm.test(\"Status code is 404\", function () {",
+											"    pm.response.to.have.status(404);",
+											"    pm.expect(parsed_response.error).to.eql(\"Post not found\")",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"msg\": \"Hi! I am created by suspicious people! Bosh!\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/post/{{anonymous_post_id}}/delete/{{anonymous_post_key}}",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"post",
+										"{{anonymous_post_id}}",
+										"delete",
+										"{{anonymous_post_key}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Post(User)",
+			"item": [
+				{
+					"name": "Create Post",
+					"item": [
+						{
+							"name": "Create Post by AC",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"parsed_response = pm.response.json();",
+											"",
+											"pm.test(\"Post is created\", () => {",
+											"  pm.expect(parsed_response.key).to.exist;",
+											"  pm.expect(parsed_response.id).to.exist;",
+											"  pm.expect(parsed_response.msg).to.exist;",
+											"  pm.expect(parsed_response.user).to.not.be.null;",
+											"});",
+											"",
+											"pm.collectionVariables.set(\"ac_post_id\", parsed_response.id);",
+											"pm.collectionVariables.set(\"ac_post_key\", parsed_response.key);",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "user_key",
+										"value": "{{user_ac_key}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"msg\": \"Hi! I am created by AC! Bosh! Heellloo\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/post",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"post"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Post by PM",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"parsed_response = pm.response.json();",
+											"",
+											"pm.test(\"Post is created\", () => {",
+											"  pm.expect(parsed_response.key).to.exist;",
+											"  pm.expect(parsed_response.id).to.exist;",
+											"  pm.expect(parsed_response.msg).to.exist;",
+											"  pm.expect(parsed_response.user).to.not.be.null;",
+											"});",
+											"",
+											"pm.collectionVariables.set(\"pm_post_id\", parsed_response.id);",
+											"pm.collectionVariables.set(\"pm_post_key\", parsed_response.key);",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "user_key",
+										"value": "{{user_pm_key}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"msg\": \"Hi! I am created by PM! Bosh!\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/post",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"post"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Post by KT",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"parsed_response = pm.response.json();",
+											"",
+											"pm.test(\"Post is created\", () => {",
+											"  pm.expect(parsed_response.key).to.exist;",
+											"  pm.expect(parsed_response.id).to.exist;",
+											"  pm.expect(parsed_response.msg).to.exist;",
+											"  pm.expect(parsed_response.user).to.not.be.null;",
+											"});",
+											"",
+											"pm.collectionVariables.set(\"kt_post_id\", parsed_response.id);",
+											"pm.collectionVariables.set(\"kt_post_key\", parsed_response.key);",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "user_key",
+										"value": "{{user_kt_key}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"msg\": \"Hi! I am created by KT! Bosh!\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/post",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"post"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Validation: No message",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"parsed_response = pm.response.json();",
+											"",
+											"pm.test(\"Status code is 400\", function () {",
+											"    pm.response.to.have.status(400);",
+											"    pm.expect(parsed_response.error).to.eql(\"msg is required\")",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "user_key",
+										"value": "{{user_ac_key}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"msg\": \"\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/post",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"post"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Validation: Empty message",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"parsed_response = pm.response.json();",
+											"",
+											"pm.test(\"Status code is 400\", function () {",
+											"    pm.response.to.have.status(400);",
+											"    pm.expect(parsed_response.error).to.eql(\"msg is required\")",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "user_key",
+										"value": "{{user_ac_key}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"msg\": \"   \"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/post",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"post"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Validation: Incorrect msg data type",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"parsed_response = pm.response.json();",
+											"",
+											"pm.test(\"Status code is 400\", function () {",
+											"    pm.response.to.have.status(400);",
+											"    pm.expect(parsed_response.error).to.eql(\"msg must be a string\")",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "user_key",
+										"value": "{{user_ac_key}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"msg\": 123\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/post",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"post"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Get Post",
+					"item": [
+						{
+							"name": "Get Post(Can view anyone's post)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"parsed_response = pm.response.json();",
+											"",
+											"pm.test(\"Post is sent\", () => {",
+											"  pm.response.to.have.status(200);",
+											"  pm.expect(parsed_response.key).to.not.exist;",
+											"  pm.expect(parsed_response.id).to.exist;",
+											"  pm.expect(parsed_response.msg).to.exist;",
+											"  pm.expect(parsed_response.user).to.not.be.null;",
+											"  pm.expect(parsed_response.user.username).to.eql('KT');",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "user_key",
+										"value": "{{user_ac_key}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://127.0.0.1:5000/post/{{kt_post_id}}",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"post",
+										"{{kt_post_id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Post(Can view as anonymous)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"parsed_response = pm.response.json();",
+											"",
+											"pm.test(\"Post is sent\", () => {",
+											"  pm.response.to.have.status(200);",
+											"  pm.expect(parsed_response.key).to.not.exist;",
+											"  pm.expect(parsed_response.id).to.exist;",
+											"  pm.expect(parsed_response.msg).to.exist;",
+											"  pm.expect(parsed_response.user).to.not.be.null;",
+											"  pm.expect(parsed_response.user.username).to.eql('KT');",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "user_key",
+										"value": "{{user_ac_key}}",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "http://127.0.0.1:5000/post/{{kt_post_id}}",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"post",
+										"{{kt_post_id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get unavailable post",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"parsed_response = pm.response.json();",
+											"",
+											"pm.test(\"Status code is 404\", function () {",
+											"    pm.response.to.have.status(404);",
+											"    pm.expect(parsed_response.error).to.eql(\"Post not found\")",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/post/0",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"post",
+										"0"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Get User's Posts",
+					"item": [
+						{
+							"name": "Get Posts(Can view any user's posts)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"parsed_response = pm.response.json();",
+											"",
+											"pm.test(\"Posts are retrieved\", () => {",
+											"  pm.response.to.have.status(200);",
+											"  pm.expect(parsed_response).to.have.length(1);",
+											"  record = parsed_response[0]",
+											"  pm.expect(record.key).to.not.exist;",
+											"  pm.expect(record.id).to.exist;",
+											"  pm.expect(record.msg).to.exist;",
+											"  pm.expect(record.user).to.not.be.null;",
+											"  pm.expect(record.user.username).to.eql('PM');",
+											"  pm.expect(record.user.key).to.not.exist;",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "user_key",
+										"value": "{{user_ac_key}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://127.0.0.1:5000/users/{{user_pm_id}}/posts",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"users",
+										"{{user_pm_id}}",
+										"posts"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Posts(Can view as anonymous)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"parsed_response = pm.response.json();",
+											"",
+											"pm.test(\"Posts are retrieved\", () => {",
+											"  pm.response.to.have.status(200);",
+											"  pm.expect(parsed_response).to.have.length(1);",
+											"  record = parsed_response[0]",
+											"  pm.expect(record.key).to.not.exist;",
+											"  pm.expect(record.id).to.exist;",
+											"  pm.expect(record.msg).to.exist;",
+											"  pm.expect(record.user).to.not.be.null;",
+											"  pm.expect(record.user.username).to.eql('PM');",
+											"  pm.expect(record.user.key).to.not.exist;",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "user_key",
+										"value": "{{user_ac_key}}",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "http://127.0.0.1:5000/users/{{user_pm_id}}/posts",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"users",
+										"{{user_pm_id}}",
+										"posts"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Validation: Invalid user id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"parsed_response = pm.response.json();",
+											"",
+											"pm.test(\"Status code is 404\", function () {",
+											"    pm.response.to.have.status(404);",
+											"    pm.expect(parsed_response.error).to.eql(\"User not found\")",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "user_key",
+										"value": "{{user_ac_key}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://127.0.0.1:5000/users/0/posts",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"users",
+										"0",
+										"posts"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Delete Post",
+					"item": [
+						{
+							"name": "Validation: Delete post with invalid key",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"parsed_response = pm.response.json();",
+											"",
+											"pm.test(\"Status code is 404\", function () {",
+											"    pm.response.to.have.status(404);",
+											"    pm.expect(parsed_response.error).to.eql(\"Could not find post with that key\")",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "user_key",
+										"value": "{{user_ac_key}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"msg\": \"Hi! I am created by suspicious people! Bosh!\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/post/{{ac_post_id}}/delete/wrong_key_alert",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"post",
+										"{{ac_post_id}}",
+										"delete",
+										"wrong_key_alert"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Validation: Cannot delete other user post",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"parsed_response = pm.response.json();",
+											"",
+											"pm.test(\"Status code is 403\", function () {",
+											"    pm.response.to.have.status(403);",
+											"    pm.expect(parsed_response.error).to.eql(\"You cant delete this post.\")",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "user_key",
+										"value": "{{user_pm_key}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"msg\": \"Hi! I am created by suspicious people! Bosh!\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/post/{{ac_post_id}}/delete/{{ac_post_key}}",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"post",
+										"{{ac_post_id}}",
+										"delete",
+										"{{ac_post_key}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Validation: Anonymous user cannot delete other user post",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"parsed_response = pm.response.json();",
+											"",
+											"pm.test(\"Status code is 403\", function () {",
+											"    pm.response.to.have.status(403);",
+											"    pm.expect(parsed_response.error).to.eql(\"You cant delete this post.\")",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "user_key",
+										"value": "{{user_pm_key}}",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"msg\": \"Hi! I am created by suspicious people! Bosh!\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/post/{{ac_post_id}}/delete/{{ac_post_key}}",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"post",
+										"{{ac_post_id}}",
+										"delete",
+										"{{ac_post_key}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete available post by correct user",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"parsed_response = pm.response.json();",
+											"",
+											"pm.test(\"Post is created\", () => {",
+											"  pm.expect(parsed_response.key).to.exist;",
+											"  pm.expect(parsed_response.id).to.exist;",
+											"  pm.expect(parsed_response.msg).to.exist;",
+											"  pm.expect(parsed_response.user).to.not.be.null;",
+											"  pm.expect(parsed_response.key).to.exist;",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "user_key",
+										"value": "{{user_ac_key}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"msg\": \"Hi! I am created by suspicious people! Bosh!\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/post/{{ac_post_id}}/delete/{{ac_post_key}}",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"post",
+										"{{ac_post_id}}",
+										"delete",
+										"{{ac_post_key}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Validation: Delete unavailable post",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"parsed_response = pm.response.json();",
+											"",
+											"pm.test(\"Status code is 404\", function () {",
+											"    pm.response.to.have.status(404);",
+											"    pm.expect(parsed_response.error).to.eql(\"Post not found\")",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "user_key",
+										"value": "{{user_ac_key}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"msg\": \"Hi! I am created by suspicious people! Bosh!\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/post/{{anonymous_post_id}}/delete/{{anonymous_post_key}}",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"post",
+										"{{anonymous_post_id}}",
+										"delete",
+										"{{anonymous_post_key}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Fulltext Post Search Extension",
+			"item": [
+				{
+					"name": "Get Post: Anonymous User",
 					"event": [
 						{
 							"listen": "test",
@@ -218,35 +2378,25 @@
 								"exec": [
 									"parsed_response = pm.response.json();",
 									"",
-									"pm.test(\"Post is created\", () => {",
-									"  pm.expect(parsed_response.key).to.exist;",
-									"  pm.expect(parsed_response.id).to.exist;",
-									"  pm.expect(parsed_response.msg).to.exist;",
-									"  pm.expect(parsed_response.user).to.to.be.null;",
-									"});",
-									"",
-									"pm.collectionVariables.set(\"an_post_1_id\", parsed_response.id);",
-									"pm.collectionVariables.set(\"an_post_1_key\", parsed_response.key);",
-									""
+									"pm.test(\"User details received\", () => {",
+									"  pm.expect(parsed_response).to.be.an(\"array\");",
+									"});"
 								],
 								"type": "text/javascript"
 							}
 						}
 					],
 					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"msg\": \"Hi! I am created by suspicious people! Bosh!\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
+						"method": "GET",
+						"header": [
+							{
+								"key": "user_key",
+								"value": "{{user_kt_key}}",
+								"type": "text"
 							}
-						},
+						],
 						"url": {
-							"raw": "http://127.0.0.1:5000/post",
+							"raw": "http://127.0.0.1:5000/post/query/search?search=heellloo",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -256,14 +2406,119 @@
 							],
 							"port": "5000",
 							"path": [
-								"post"
+								"post",
+								"query",
+								"search"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "heellloo"
+								}
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Create post with no message",
+					"name": "Get Post: Created by User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"parsed_response = pm.response.json();",
+									"",
+									"pm.test(\"User details received\", () => {",
+									"  pm.expect(parsed_response).to.be.an(\"array\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "user_key",
+								"value": "{{user_kt_key}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:5000/post/query/search?search=heellloo",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"post",
+								"query",
+								"search"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "heellloo"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Post: No Matching Posts",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"parsed_response = pm.response.json();",
+									"",
+									"pm.test(\"User details received\", () => {",
+									"  pm.expect(parsed_response).to.be.an(\"array\");",
+									"  pm.expect(parsed_response).to.not.have.length;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/post/query/search?search=33",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"post",
+								"query",
+								"search"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "33"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Validation: No search term",
 					"event": [
 						{
 							"listen": "test",
@@ -273,68 +2528,31 @@
 									"",
 									"pm.test(\"Status code is 400\", function () {",
 									"    pm.response.to.have.status(400);",
-									"    pm.expect(parsed_response.error).to.eql(\"msg is required\")",
+									"    pm.expect(parsed_response.error).to.eql(\"Search is empty\")",
 									"});"
 								],
 								"type": "text/javascript"
 							}
 						}
 					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"msg\": \"\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://127.0.0.1:5000/post",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "5000",
-							"path": [
-								"post"
-							]
-						}
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
 					},
-					"response": []
-				},
-				{
-					"name": "Get Post",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"parsed_response = pm.response.json();",
-									"",
-									"pm.test(\"Post is sent\", () => {",
-									"  pm.response.to.have.status(200);",
-									"  pm.expect(parsed_response.key).to.not.exist;",
-									"  pm.expect(parsed_response.id).to.exist;",
-									"  pm.expect(parsed_response.msg).to.exist;",
-									"  pm.expect(parsed_response.user).to.to.be.null;",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
-							"raw": "http://127.0.0.1:5000/post/{{an_post_1_id}}",
+							"raw": "http://127.0.0.1:5000/post/query/search?search=",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -345,14 +2563,21 @@
 							"port": "5000",
 							"path": [
 								"post",
-								"{{an_post_1_id}}"
+								"query",
+								"search"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": ""
+								}
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Get unavailable post",
+					"name": "Validation: Empty Search Term",
 					"event": [
 						{
 							"listen": "test",
@@ -360,68 +2585,33 @@
 								"exec": [
 									"parsed_response = pm.response.json();",
 									"",
-									"pm.test(\"Status code is 404\", function () {",
-									"    pm.response.to.have.status(404);",
-									"    pm.expect(parsed_response.error).to.eql(\"Post not found\")",
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"    pm.expect(parsed_response.error).to.eql(\"Search is empty\")",
 									"});"
 								],
 								"type": "text/javascript"
 							}
 						}
 					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
 						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://127.0.0.1:5000/post/0",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "5000",
-							"path": [
-								"post",
-								"0"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete post with invalid key",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"parsed_response = pm.response.json();",
-									"",
-									"pm.test(\"Status code is 403\", function () {",
-									"    pm.response.to.have.status(403);",
-									"    pm.expect(parsed_response.error).to.eql(\"You are not authorised to delete this post.\")",
-									"});"
-								],
-								"type": "text/javascript"
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
 							}
-						}
-					],
-					"request": {
-						"method": "DELETE",
-						"header": [],
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"msg\": \"Hi! I am created by suspicious people! Bosh!\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
+							"raw": ""
 						},
 						"url": {
-							"raw": "http://127.0.0.1:5000/post/{{an_post_1_id}}/delete/wrong_key_alert",
+							"raw": "http://127.0.0.1:5000/post/query/search?search=       ",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -432,112 +2622,14 @@
 							"port": "5000",
 							"path": [
 								"post",
-								"{{an_post_1_id}}",
-								"delete",
-								"wrong_key_alert"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete post",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"parsed_response = pm.response.json();",
-									"",
-									"pm.test(\"Post is created\", () => {",
-									"  pm.expect(parsed_response.key).to.exist;",
-									"  pm.expect(parsed_response.id).to.exist;",
-									"  pm.expect(parsed_response.msg).to.exist;",
-									"  pm.expect(parsed_response.user).to.be.null;",
-									"});",
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"msg\": \"Hi! I am created by suspicious people! Bosh!\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://127.0.0.1:5000/post/{{an_post_1_id}}/delete/{{an_post_1_key}}",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
+								"query",
+								"search"
 							],
-							"port": "5000",
-							"path": [
-								"post",
-								"{{an_post_1_id}}",
-								"delete",
-								"{{an_post_1_key}}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete unavailable post",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"parsed_response = pm.response.json();",
-									"",
-									"pm.test(\"Status code is 404\", function () {",
-									"    pm.response.to.have.status(404);",
-									"    pm.expect(parsed_response.error).to.eql(\"Post not found\")",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"msg\": \"Hi! I am created by suspicious people! Bosh!\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+							"query": [
+								{
+									"key": "search",
+									"value": "       "
 								}
-							}
-						},
-						"url": {
-							"raw": "http://127.0.0.1:5000/post/{{an_post_1_id}}/delete/{{an_post_1_key}}",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "5000",
-							"path": [
-								"post",
-								"{{an_post_1_id}}",
-								"delete",
-								"{{an_post_1_key}}"
 							]
 						}
 					},
@@ -546,22 +2638,92 @@
 			]
 		}
 	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
 	"variable": [
 		{
-			"key": "user1_key",
+			"key": "user_ac_id",
 			"value": ""
 		},
 		{
-			"key": "user1_id",
+			"key": "user_ac_key",
 			"value": ""
 		},
 		{
-			"key": "an_post_1_id",
+			"key": "user_pm_id",
 			"value": ""
 		},
 		{
-			"key": "an_post_1_key",
+			"key": "user_pm_key",
 			"value": ""
+		},
+		{
+			"key": "user_kt_id",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "user_kt_key",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "anonymous_post_id",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "anonymous_post_key",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "ac_post_id",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "ac_post_key",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "pm_post_id",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "pm_post_key",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "kt_post_id",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "kt_post_key",
+			"value": "",
+			"type": "string"
 		}
 	]
 }
