@@ -36,7 +36,7 @@ def delete_post(user, counter_id, id):
         raise NotFoundError("Post not found")
     
     if str(post.id) != id:
-        raise UnauthorizedError("You are not authorised to delete this post.")
+        raise Exception("Could not find post with that key")
     
     if not user and post.user:
         raise UnauthorizedError("You cant delete this post.")

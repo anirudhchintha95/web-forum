@@ -1,12 +1,13 @@
 from application.models.user import User
 from application.models.post import Post
+from application.models.errors import NotFoundError
 
 
 def create_user(username, password, firstname):
     """
     Create a new user
     """
-    already_exists = User.objects(username=username).first()
+    already_exists = User.objects(username=username.lower()).first()
 
     if already_exists:
         raise Exception("User already exists")
@@ -34,12 +35,15 @@ def edit_user_by_key(user_key, username, password, firstname):
 
     hasUpdates = False
     if username and username.lower() != user.username.lower():
+        already_exists = User.objects(username=username.lower()).first()
+        if already_exists:
+            raise Exception("User already exists")
         hasUpdates = True
         user.username = username
     if password and not user.check_password(password):
         hasUpdates = True
         user.hash_password(password)
-    if firstname and firstname.lower() != user.firstname.lower():
+    if firstname and firstname != user.firstname:
         hasUpdates = True
         user.firstname = firstname
 
@@ -55,7 +59,7 @@ def get_user_by_counterId(counter_id):
     """
     user = User.objects(counter_id=int(counter_id)).first()
     if not user:
-        raise Exception("User not found")
+        raise NotFoundError("User not found")
     return user
 
 def create_post(user, msg):

@@ -27,7 +27,7 @@ class User(Document, Base):
         """
         Initializes a user and hashes the password
         """
-        user = cls(username=username, firstname=firstname)
+        user = cls(username=username.lower(), firstname=firstname)
         user.hash_password(password)
         return user
 

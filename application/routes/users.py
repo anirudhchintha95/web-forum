@@ -1,5 +1,6 @@
-from flask import Blueprint, request, abort, g
+from flask import Blueprint, request, abort, g, jsonify
 import application.controllers.users as users_controller
+from application.models.errors import NotFoundError
 
 bp = Blueprint("users", __name__, url_prefix="/users")
 
@@ -11,14 +12,13 @@ def register():
     """
     if request.method == "POST":
         try:
-            params = {
-                "username": "",
-                "password": "",
-                "firstname": ""
-            }
+            params = {"username": "", "password": "", "firstname": ""}
             for field in params:
-                params[field] = request.json.get(field).strip()
-                if not params[field]:
+                params[field] = request.json.get(field)
+                if not isinstance(params[field], str):
+                    raise Exception(f"{field} value should be string")
+                params[field] = params[field].strip()
+                if params[field] == "":
                     raise Exception(f"{field} is required")
 
             user = users_controller.create_user(
@@ -30,6 +30,7 @@ def register():
     else:
         abort(404, "Method not allowed")
 
+
 # Get a user by user key
 @bp.route("/<int:user_counter_id>", methods=["GET"])
 def get_user_route(user_counter_id):
@@ -40,13 +41,16 @@ def get_user_route(user_counter_id):
         try:
             current_user = g.get("current_user")
             if current_user is None:
-                abort(403, "Unauthorized")
+                return jsonify(error="Unauthorized"), 403
             user = users_controller.get_user_by_counterId(user_counter_id)
             return user.to_response(True)
+        except NotFoundError as e:
+            abort(404, str(e))
         except Exception as e:
             abort(400, str(e))
     else:
         abort(404, "User not found")
+
 
 # Edit a user by user counter id
 @bp.route("/edit", methods=["PUT"])
@@ -83,6 +87,8 @@ def get_posts_user_route(user_counter_id):
             user = users_controller.get_user_by_counterId(user_counter_id)
             posts = users_controller.get_posts(user)
             return posts
+        except NotFoundError as e:
+            abort(404, str(e))
         except Exception as e:
             abort(400, str(e))
     else:
