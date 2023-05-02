@@ -322,6 +322,55 @@
 							"response": []
 						},
 						{
+							"name": "Validation: Empty firstname",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"parsed_response = pm.response.json();",
+											"",
+											"pm.test(\"Status code is 400\", function () {",
+											"    pm.response.to.have.status(400);",
+											"    pm.expect(parsed_response.error).to.eql(\"firstname cannot be empty\")",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"AC\",\n    \"password\": \"48754365674\",\n    \"firstname\": \"\"\n}"
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/users/create",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"users",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "Validation: No firstname",
 							"event": [
 								{
@@ -1529,7 +1578,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"msg\": \"Hi! I am created by PM! Bosh!\"\n}",
+									"raw": "{\n    \"msg\": \"HeeLLloo    \"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1588,7 +1637,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"msg\": \"Hi! I am created by KT! Bosh!\"\n}",
+									"raw": "{\n    \"msg\": \"HeelllooHi! I am created by KT! Bosh!\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -2380,6 +2429,7 @@
 									"",
 									"pm.test(\"User details received\", () => {",
 									"  pm.expect(parsed_response).to.be.an(\"array\");",
+									"  pm.expect(parsed_response).to.have.length(2);",
 									"});"
 								],
 								"type": "text/javascript"
