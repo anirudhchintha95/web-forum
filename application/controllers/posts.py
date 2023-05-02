@@ -36,7 +36,7 @@ def delete_post(user, counter_id, id):
         raise NotFoundError("Post not found")
     
     if str(post.id) != id:
-        raise Exception("Could not find post with that key")
+        raise UnauthorizedError("Could not find post with that key")
     
     if not user and post.user:
         raise UnauthorizedError("You cant delete this post.")
@@ -60,9 +60,6 @@ def get_posts_search(search):
     """
     Get a post
     """
-    if not search:
-        raise Exception("Search is empty")
-
     if not isinstance(search, str):
         raise Exception("Search is not string")
 
