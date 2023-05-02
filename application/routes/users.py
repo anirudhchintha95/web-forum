@@ -15,11 +15,13 @@ def register():
             params = {"username": "", "password": "", "firstname": ""}
             for field in params:
                 params[field] = request.json.get(field)
+                if params[field] is None:
+                    raise Exception(f"{field} is required")
                 if not isinstance(params[field], str):
                     raise Exception(f"{field} value should be string")
                 params[field] = params[field].strip()
                 if params[field] == "":
-                    raise Exception(f"{field} is required")
+                    raise Exception(f"{field} cannot be empty")
 
             user = users_controller.create_user(
                 params["username"], params["password"], params["firstname"]

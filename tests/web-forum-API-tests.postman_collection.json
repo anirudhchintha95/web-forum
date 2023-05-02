@@ -224,7 +224,7 @@
 							"response": []
 						},
 						{
-							"name": "Validation: No username",
+							"name": "Validation: Empty username",
 							"event": [
 								{
 									"listen": "test",
@@ -234,7 +234,7 @@
 											"",
 											"pm.test(\"Status code is 400\", function () {",
 											"    pm.response.to.have.status(400);",
-											"    pm.expect(parsed_response.error).to.eql(\"username is required\")",
+											"    pm.expect(parsed_response.error).to.eql(\"username cannot be empty\")",
 											"});"
 										],
 										"type": "text/javascript"
@@ -273,7 +273,7 @@
 							"response": []
 						},
 						{
-							"name": "Validation: No password",
+							"name": "Validation: Empty password",
 							"event": [
 								{
 									"listen": "test",
@@ -283,7 +283,7 @@
 											"",
 											"pm.test(\"Status code is 400\", function () {",
 											"    pm.response.to.have.status(400);",
-											"    pm.expect(parsed_response.error).to.eql(\"password is required\")",
+											"    pm.expect(parsed_response.error).to.eql(\"password cannot be empty\")",
 											"});"
 										],
 										"type": "text/javascript"
@@ -1283,7 +1283,7 @@
 											"",
 											"pm.test(\"Status code is 403\", function () {",
 											"    pm.response.to.have.status(403);",
-											"    pm.expect(parsed_response.error).to.eql(\"You are not authorised to delete this post.\")",
+											"    pm.expect(parsed_response.error).to.eql(\"Could not find post with that key\")",
 											"});"
 										],
 										"type": "text/javascript"
@@ -1791,7 +1791,7 @@
 											"  pm.expect(parsed_response.id).to.exist;",
 											"  pm.expect(parsed_response.msg).to.exist;",
 											"  pm.expect(parsed_response.user).to.not.be.null;",
-											"  pm.expect(parsed_response.user.username).to.eql('KT');",
+											"  pm.expect(parsed_response.user.username).to.eql('kt');",
 											"});"
 										],
 										"type": "text/javascript"
@@ -1840,7 +1840,7 @@
 											"  pm.expect(parsed_response.id).to.exist;",
 											"  pm.expect(parsed_response.msg).to.exist;",
 											"  pm.expect(parsed_response.user).to.not.be.null;",
-											"  pm.expect(parsed_response.user.username).to.eql('KT');",
+											"  pm.expect(parsed_response.user.username).to.eql('kt');",
 											"});"
 										],
 										"type": "text/javascript"
@@ -1936,7 +1936,7 @@
 											"  pm.expect(record.id).to.exist;",
 											"  pm.expect(record.msg).to.exist;",
 											"  pm.expect(record.user).to.not.be.null;",
-											"  pm.expect(record.user.username).to.eql('PM');",
+											"  pm.expect(record.user.username).to.eql('pm');",
 											"  pm.expect(record.user.key).to.not.exist;",
 											"});"
 										],
@@ -1989,7 +1989,7 @@
 											"  pm.expect(record.id).to.exist;",
 											"  pm.expect(record.msg).to.exist;",
 											"  pm.expect(record.user).to.not.be.null;",
-											"  pm.expect(record.user.username).to.eql('PM');",
+											"  pm.expect(record.user.username).to.eql('pm');",
 											"  pm.expect(record.user.key).to.not.exist;",
 											"});"
 										],
@@ -2086,8 +2086,8 @@
 										"exec": [
 											"parsed_response = pm.response.json();",
 											"",
-											"pm.test(\"Status code is 404\", function () {",
-											"    pm.response.to.have.status(404);",
+											"pm.test(\"Status code is 403\", function () {",
+											"    pm.response.to.have.status(403);",
 											"    pm.expect(parsed_response.error).to.eql(\"Could not find post with that key\")",
 											"});"
 										],
